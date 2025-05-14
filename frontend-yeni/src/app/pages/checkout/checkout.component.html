@@ -1,0 +1,53 @@
+<div *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!loading">
+  <div class="checkout-container">
+    <h2>Ödeme Sayfası</h2>
+
+    <form (ngSubmit)="pay()" #checkoutForm="ngForm">
+      <input
+        type="text"
+        name="shipping"
+        [(ngModel)]="shippingAddress"
+        placeholder="Teslimat Adresi"
+        required
+      />
+      <input
+        type="text"
+        name="billing"
+        [(ngModel)]="billingAddress"
+        placeholder="Fatura Adresi"
+        required
+      />
+
+      <select [(ngModel)]="paymentMethod" name="paymentMethod" required>
+        <option value="Kredi Kartı">Kredi Kartı</option>
+        <option value="Kapıda Ödeme">Kapıda Ödeme</option>
+      </select>
+
+      <!-- ngx-stripe card -->
+      <!-- Kart alanı sadece loading bitince ve ödeme türü kredi kartı ise gösterilir -->
+    <div *ngIf="!loading && paymentMethod === 'Kredi Kartı'">
+      <label>Kart Bilgileri:</label>
+      <ngx-stripe-card
+        [options]="cardOptions"
+        [elementsOptions]="elementsOptions">
+      </ngx-stripe-card>
+      <div *ngIf="cardError" class="card-errors">{{ cardError }}</div>
+    </div>
+
+
+      <p><em>Yukarıdaki bilgileri doldurarak siparişi tamamlayabilirsiniz.</em></p>
+
+      <h3>Sepet Özeti:</h3>
+      <div *ngFor="let item of cartItems">
+        {{ item.productName }} - {{ item.quantity }} adet x {{ item.price }}₺
+      </div>
+
+      <h3>Toplam: {{ total }} TL</h3>
+      <button type="submit" [disabled]="loading">Siparişi Onayla</button>
+    </form>
+  </div>
+</div>

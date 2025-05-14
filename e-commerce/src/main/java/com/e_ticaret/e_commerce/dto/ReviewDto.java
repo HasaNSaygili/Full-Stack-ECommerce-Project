@@ -1,0 +1,11 @@
+package com.e_ticaret.e_commerce.dto;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class ReviewDto {
+    private int rating;
+    private String comment;
+}

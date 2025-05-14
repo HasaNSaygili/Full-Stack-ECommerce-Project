@@ -1,0 +1,51 @@
+<h2 style="margin: 1rem;">Popüler Ürünler</h2>
+
+<div class="filters">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Ürün ara..."
+    class="search-box"
+  />
+
+  <select [(ngModel)]="selectedCategory">
+    <option value="Tümü">Tüm Kategoriler</option>
+    <option *ngFor="let category of categories" [value]="category.name">
+      {{ category.name }}
+    </option>
+  </select>
+
+  <select [(ngModel)]="sortOrder">
+    <option value="varsayılan">Sıralama Yok</option>
+    <option value="artan">Fiyat: Artan</option>
+    <option value="azalan">Fiyat: Azalan</option>
+  </select>
+</div>
+
+<div class="grid">
+  <div *ngFor="let product of filteredProducts" class="card">
+    <div class="favorite-icon" (click)="toggleFavorite(product)">
+      <span [class.filled]="isFavorite(product.id)">&#10084;</span>
+    </div>
+
+
+    <h4>{{ product.name }}</h4>
+
+    <p>
+      <span class="old-price">
+        {{ product.oldPrice || (product.price + 100) }} TL
+      </span>
+      <span class="new-price">{{ product.price }} TL</span>
+    </p>
+
+    <p *ngIf="product.stock > 0" class="in-stock">Stokta: {{ product.stock }}</p>
+    <p *ngIf="product.stock == 0" class="out-of-stock">Stokta Yok</p>
+
+    <div class="card-buttons">
+      <button [routerLink]="['/product', product.id]">Detay</button>
+      <button (click)="addToCart(product)" [disabled]="product.stock == 0">
+        Sepete Ekle
+      </button>
+    </div>
+  </div>
+</div>

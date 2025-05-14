@@ -1,0 +1,124 @@
+/* Temel yapı */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h2, h3 {
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+/* Formlar */
+form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+input, select, button {
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Admin panel */
+.admin-container,
+.admin-product-container,
+.admin-user-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.admin-user-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-user-container th, .admin-user-container td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.admin-user-container th {
+  background: #f1f1f1;
+}
+
+/* Seller panel */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #f4f4f4;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+/* Profil */
+.profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+.error-text {
+  color: red;
+  text-align: center;
+}
+
+/* Sepet */
+.cart-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.cart-container ul {
+  padding-left: 0;
+}
+
+.cart-container li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.checkout-btn {
+  background: #28a745;
+  color: white;
+}
+
+.checkout-btn:hover {
+  background: #218838;
+}

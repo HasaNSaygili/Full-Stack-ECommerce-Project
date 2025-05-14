@@ -1,0 +1,17 @@
+<div *ngIf="product">
+  <h2>{{ product.name }}</h2>
+
+  <div class="product-detail">
+
+    <div class="product-info">
+      <p><span class="old-price">{{ product.oldPrice }} TL</span></p>
+      <p><span class="new-price">{{ product.price }} TL</span></p>
+      <p>{{ product.description }}</p>
+
+      <p *ngIf="product.stock > 0" class="in-stock">Stokta: {{ product.stock }} adet</p>
+      <p *ngIf="product.stock == 0" class="out-of-stock">Stokta Yok</p>
+
+      <button [disabled]="product.stock == 0">Sepete Ekle</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="cart-container" *ngIf="cart">
+  <h2>🛒 Sepetim</h2>
+
+  <div *ngIf="cart.cartItems.length === 0">
+    <p>Sepetiniz boş.</p>
+  </div>
+
+  <div *ngIf="cart.cartItems.length > 0">
+    <div *ngFor="let item of cart.cartItems" class="cart-item">
+      <div class="cart-info">
+        <strong>{{ item.productName }}</strong><br>
+        {{ item.quantity }} adet x {{ item.price }}₺ = {{ item.quantity * item.price }}₺
+      </div>
+      <div class="cart-buttons">
+        <button (click)="increaseQuantity(item.productId)">+1</button>
+        <button (click)="decreaseQuantity(item.productId, item.quantity)">-1</button>
+        <button (click)="removeItem(item.productId)">Kaldır</button>
+      </div>
+    </div>
+
+    <p class="total"><strong>Toplam:</strong> {{ total }} TL</p>
+
+    <div class="cart-actions">
+      <button class="clear-btn" (click)="clearCart()">🧹 Sepeti Temizle</button>
+      <button class="checkout-btn" (click)="completeOrder()">✅ Siparişi Tamamla</button>
+
+  </div>
+</div>

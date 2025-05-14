@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <div class="navbar-logo">
+    <a routerLink="/">TrendClone</a>
+  </div>
+
+  <div class="hamburger" (click)="toggleMenu()">&#9776;</div>
+
+  <ul [class.active]="menuOpen" class="navbar-links">
+    <li><a routerLink="/">Ana Sayfa</a></li>
+    <li><a routerLink="/favorites">Favoriler</a></li>
+    <li><a routerLink="/cart">Sepet</a></li>
+    <li *ngIf="isLoggedIn">
+      <a routerLink="/orders" routerLinkActive="active">📦 Siparişlerim</a>
+    </li>
+
+    <li><a routerLink="/seller">Satıcı Paneli</a></li>
+    <li><a routerLink="/admin">Admin Paneli</a></li>
+
+    <ng-container *ngIf="isLoggedIn(); else guestLinks">
+      <li><a routerLink="/profile">Profil</a></li>
+      <li><a href="#" (click)="logout()">Çıkış Yap</a></li>
+    </ng-container>
+
+    <ng-template #guestLinks>
+      <li><a routerLink="/login">Giriş Yap</a></li>
+      <li><a routerLink="/register">Kayıt Ol</a></li>
+    </ng-template>
+  </ul>
+</nav>

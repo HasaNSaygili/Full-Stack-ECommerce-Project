@@ -1,0 +1,11 @@
+<div *ngIf="user; else errorTemplate" class="profile-container">
+  <h2>Profil Bilgileri</h2>
+  <p><strong>Kullanıcı Adı:</strong> {{ user.username }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Rol:</strong> {{ user.role }}</p>
+</div>
+
+<ng-template #errorTemplate>
+  <p class="error-text">{{ errorMessage }}</p>
+  <a routerLink="/login">Giriş Yap</a>
+</ng-template>

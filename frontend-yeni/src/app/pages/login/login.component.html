@@ -1,0 +1,23 @@
+<!-- src/app/pages/login/login.component.html -->
+<div class="auth-container">
+  <h2>Giriş Yap</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <input type="email"
+           formControlName="email"
+           placeholder="Email">
+    <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+      <small style="color: red;">Geçerli bir email girin.</small>
+    </div>
+
+    <input type="password"
+           formControlName="password"
+           placeholder="Şifre">
+    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+      <small style="color: red;">Şifre en az 6 karakter olmalıdır.</small>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
+  </form>
+</div>

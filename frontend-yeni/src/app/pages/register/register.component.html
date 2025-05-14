@@ -1,0 +1,43 @@
+<div class="auth-container">
+  <h2>Kayıt Ol</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+    <input type="text" formControlName="username" placeholder="İsim">
+    <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
+      <small style="color: red;">İsim en az 2 karakter olmalı.</small>
+    </div>
+
+    <input type="email" formControlName="email" placeholder="Email">
+    <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+      <small style="color: red;">Geçerli bir email girin.</small>
+    </div>
+
+    <select formControlName="role">
+      <option value="ROLE_USER">Kullanıcı</option>
+      <option value="ROLE_SELLER">Satıcı</option>
+      <option value="ROLE_ADMIN">Yönetici</option>
+    </select>
+
+
+
+  <div *ngIf="registerForm.value.role === 'ROLE_SELLER'">
+    <input formControlName="storeName" placeholder="Mağaza Adı" type="text"/>
+
+  </div>
+
+
+    <input type="password" formControlName="password" placeholder="Şifre">
+    <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+      <small style="color: red;">Şifre en az 6 karakter olmalıdır.</small>
+    </div>
+
+    <input type="password" formControlName="confirmPassword" placeholder="Şifre Tekrar">
+    <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid">
+      <small style="color: red;">Şifre tekrar alanı boş bırakılamaz.</small>
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Kayıt Ol</button>
+
+  </form>
+</div>

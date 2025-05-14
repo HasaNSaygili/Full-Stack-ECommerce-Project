@@ -1,0 +1,21 @@
+<div class="admin-product-container">
+  <h2>Ürün {{ editingProduct ? 'Güncelle' : 'Ekle' }}</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="submit()">
+    <input type="text" formControlName="name" placeholder="Ürün Adı">
+    <input type="number" formControlName="price" placeholder="Fiyat">
+    <input type="number" formControlName="stock" placeholder="Stok">
+    <input type="text" formControlName="imageUrl" placeholder="Resim Linki">
+    <input type="text" formControlName="categoryId" placeholder="Kategori ID">
+    <button type="submit" [disabled]="productForm.invalid">
+      {{ editingProduct ? 'Güncelle' : 'Ekle' }}
+    </button>
+  </form>
+
+  <h3>Mevcut Ürünler</h3>
+  <div *ngFor="let product of products" class="product-item">
+    {{ product.name }} - {{ product.price }}₺
+    <button (click)="editProduct(product)">Düzenle</button>
+    <button (click)="deleteProduct(product.id)">Sil</button>
+  </div>
+</div>

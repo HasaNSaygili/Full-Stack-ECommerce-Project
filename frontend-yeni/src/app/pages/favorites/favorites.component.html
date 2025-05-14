@@ -1,0 +1,18 @@
+<div class="favorites-container">
+  <h2>Favori Ürünlerim</h2>
+
+  <div *ngIf="favoriteItems.length === 0">
+    <p>Henüz favori ürün eklemediniz.</p>
+  </div>
+
+  <div class="grid">
+    <div *ngFor="let item of favoriteItems" class="card">
+      <img [src]="item.imageUrl" alt="{{ item.name }}">
+      <h4>{{ item.name }}</h4>
+      <p>{{ item.price }} TL</p>
+
+      <button (click)="removeFromFavorites(item.id)" class="danger-btn">Favorilerden Kaldır</button>
+      <button (click)="addToCart(item)">Sepete Ekle</button>
+    </div>
+  </div>
+</div>

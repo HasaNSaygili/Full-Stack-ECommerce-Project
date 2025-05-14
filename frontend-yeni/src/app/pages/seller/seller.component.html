@@ -1,0 +1,31 @@
+<h2>Ürünlerim</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="submit()">
+  <input formControlName="name" placeholder="Ürün Adı" />
+  <input formControlName="description" placeholder="Açıklama" />
+  <input formControlName="price" type="number" placeholder="Fiyat" />
+  <input formControlName="stock" type="number" placeholder="Stok" />
+  <input formControlName="imageUrl" placeholder="Resim URL" />
+
+  <select (change)="onCategoryChange($event)" formControlName="categoryId">
+    <option [value]="null" disabled>Kategori seç</option>
+    <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+  </select>
+
+  <button type="submit">{{ editingProduct ? 'Güncelle' : 'Ekle' }}</button>
+</form>
+
+<hr />
+
+<!-- Ürün listesi -->
+<ul *ngIf="products.length > 0; else noProducts">
+  <li *ngFor="let product of products">
+    {{ product.name }} - {{ product.price }}₺
+    <button type="button" (click)="editProduct(product)">Düzenle</button>
+    <button type="button" (click)="deleteProduct(product.id)">Sil</button>
+  </li>
+</ul>
+
+<ng-template #noProducts>
+  <p>Henüz ürününüz yok.</p>
+</ng-template>
